@@ -1,0 +1,20 @@
+title Uusi muistiinpano Siglepageapp
+
+note over selain:
+Selain lisää muistiinpanon listaan
+ja renderöi uuden näkymän, kun lista
+muuttuu
+end note
+
+selain->palvelin: HTTP POST \n https://fullstack-exampleapp.herokuapp.com/new_note_spa
+
+note over palvelin:
+tallentaa muistiinpanon
+end note:
+
+palvelin-->selain: RESPONSE STATUS 201 \n
+
+note over selain:
+Status 201 = tallennus
+palvelimelle onnistui
+end note:
