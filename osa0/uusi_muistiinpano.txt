@@ -1,0 +1,22 @@
+title Uusi muistiinpano
+
+
+selain->palvelin: HTTP POST \n https://fullstack-exampleapp.herokuapp.com/new_note
+
+note over palvelin:
+
+palvelin tallentaa muistiinpanon
+jonka jälkeen selain uudelleen
+ohjataan hakemaan etusivu uudestaan
+
+end note
+
+palvelin-->selain: HTML koodi
+
+note over selain:
+
+nyt haetaan päivittyneet
+resurssit palvelimelta
+uudelleen
+
+end note:
