@@ -5,12 +5,21 @@
   "license": "MIT",
   "scripts": {
     "start": "node server.js",
-    "watch": "nodemon server.js"
+    "watch": "nodemon server.js",
+    "build:ui": "rm -rf build && cd ../../osa2/puhelinluettelo/ && yarn build && cp -r build ../../osa3/puhelinluettelo-backend/",
+    "deploy": "git push heroku master",
+    "deploy:full": "yarn build:ui && git add . && git commit -m uibuild && git push && yarn deploy",
+    "logs:prod": "heroku logs --tail"
   },
+  "engines": {
+    "node": "10.x"
+  },
+  "proxy": "http://localhost:3001",
   "devDependencies": {
     "nodemon": "^1.19.1"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "morgan": "^1.9.1"
   }
