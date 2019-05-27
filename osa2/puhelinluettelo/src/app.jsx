@@ -3,12 +3,14 @@ import PersonService from "./services/personService";
 import Persons from "./components/persons";
 import Form from "./components/form";
 import Filter from "./components/filter";
+import Message from "./components/message";
 
 const App = () => {
   const [persons, setPersons] = useState([]);
   const [newName, setNewName] = useState("");
   const [number, setNumber] = useState("");
   const [filter, setFilter] = useState("");
+  const [message, setMessage] = useState();
 
   useEffect(() => {
     PersonService.getAll().then(initialPersons => {
@@ -43,34 +45,68 @@ const App = () => {
       setPersons(persons.concat(response));
       setNewName("");
       setNumber("");
+      handleMessage({
+        content: `Lisättiin ${newPerson.name}`,
+        type: "success"
+      });
     });
   };
 
   const handleEdit = person => {
     const newObject = PersonService.update(person);
-    newObject.then(updatedPerson => {
-      setPersons(
-        persons.map(p => (p.id !== updatedPerson.id ? p : updatedPerson))
-      );
-      setNewName("");
-      setNumber("");
-    });
+    newObject
+      .then(updatedPerson => {
+        setPersons(
+          persons.map(p => (p.id !== updatedPerson.id ? p : updatedPerson))
+        );
+        setNewName("");
+        setNumber("");
+        handleMessage({
+          content: `Henkilön ${person.name} numero vaihdettu`,
+          type: "success"
+        });
+      })
+      .catch(error => {
+        handleMessage({
+          content: `Henkilön ${person.name} tietojen muokkaus epäonnistui`,
+          type: "error"
+        });
+      });
   };
 
   const handleDelete = person => {
     const response = window.confirm(`Poistetaanko ${person.name}`);
     if (response)
-      PersonService.remove(person).then(response => {
-        if (response.status === 200) {
+      PersonService.remove(person)
+        .then(response => {
+          handleMessage({
+            content: `Henkilö ${person.name} poistettu`,
+            type: "success"
+          });
+        })
+        .catch(error => {
+          handleMessage({
+            content: `Henkilö ${person.name} oli jo poistettu`,
+            type: "error"
+          });
+        })
+        .finally(response => {
           const newPersons = persons.filter(p => p.id !== person.id);
           setPersons(newPersons);
-        }
-      });
+        });
+  };
+
+  const handleMessage = message => {
+    setMessage(message);
+    setTimeout(() => {
+      setMessage(null);
+    }, 5000);
   };
 
   return (
     <div>
       <h2>Puhelinluettelo</h2>
+      <Message message={message} />
       <Filter onFilterChange={handleFilterChange} filter={filter} />
       <h2>lisää uusi</h2>
       <Form
