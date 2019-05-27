@@ -19,6 +19,16 @@
       "name": "Lea Kutvonen",
       "number": "040-123456",
       "id": 4
+    },
+    {
+      "name": "Elmo Pelmo",
+      "number": "040-7657330",
+      "id": 5
+    },
+    {
+      "name": "Tommi Lehtisaari",
+      "number": "040-7657330",
+      "id": 6
     }
   ]
 }

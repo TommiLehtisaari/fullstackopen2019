@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import PersonService from "./services/personService";
 import Persons from "./components/persons";
 import Form from "./components/form";
 import Filter from "./components/filter";
@@ -11,8 +11,8 @@ const App = () => {
   const [filter, setFilter] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:3001/persons").then(response => {
-      setPersons(response.data);
+    PersonService.getAll().then(initialPersons => {
+      setPersons(initialPersons);
     });
   }, []);
 
@@ -31,10 +31,41 @@ const App = () => {
   const handleSubmit = event => {
     event.preventDefault();
     const person = persons.find(person => person.name === newName);
-    if (person) return alert(`${person.name} on jo luettelossa`);
-    setPersons(persons.concat({ name: newName, number }));
-    setNewName("");
-    setNumber("");
+    if (person) {
+      const response = window.confirm(
+        `${person.name} on jo luettelossa, korvataanko vanha numero uudella?`
+      );
+      if (response) return handleEdit({ name: newName, number, id: person.id });
+    }
+
+    const newPerson = { name: newName, number };
+    PersonService.create(newPerson).then(response => {
+      setPersons(persons.concat(response));
+      setNewName("");
+      setNumber("");
+    });
+  };
+
+  const handleEdit = person => {
+    const newObject = PersonService.update(person);
+    newObject.then(updatedPerson => {
+      setPersons(
+        persons.map(p => (p.id !== updatedPerson.id ? p : updatedPerson))
+      );
+      setNewName("");
+      setNumber("");
+    });
+  };
+
+  const handleDelete = person => {
+    const response = window.confirm(`Poistetaanko ${person.name}`);
+    if (response)
+      PersonService.remove(person).then(response => {
+        if (response.status === 200) {
+          const newPersons = persons.filter(p => p.id !== person.id);
+          setPersons(newPersons);
+        }
+      });
   };
 
   return (
@@ -50,7 +81,7 @@ const App = () => {
         number={number}
       />
       <h2>Numerot</h2>
-      <Persons persons={persons} filter={filter} />
+      <Persons persons={persons} filter={filter} onDelete={handleDelete} />
     </div>
   );
 };
