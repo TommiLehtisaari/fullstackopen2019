@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react'
 
 const Message = ({ message }) => {
-  if (!message) return null;
-  const { content, type } = message;
-  return <div className={type || "error"}>{content}</div>;
-};
+  if (!message) return null
+  const { content, type } = message
+  return <div className={type || 'error'}>{content}</div>
+}
 
-export default Message;
+export default Message
