@@ -4,12 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "node index.js",
+    "test": "atlas_uri=mongodb://localhost:27017/blog jest --verbose",
+    "localdev": "atlas_uri=mongodb://localhost:27017/blog NODE_ENV=development nodemon index.js"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
     "eslint-config-prettier": "^4.3.0",
     "eslint-plugin-prettier": "^3.1.0",
+    "jest": "^24.8.0",
     "nodemon": "^1.19.1",
     "prettier": "^1.17.1"
   },
@@ -19,5 +22,8 @@
     "express": "^4.17.1",
     "mongoose": "^5.5.11",
     "mongoose-unique-validator": "^2.0.3"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
