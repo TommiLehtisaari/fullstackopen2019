@@ -22,7 +22,7 @@ describe('when there is initially some blogs saved', () => {
 
   test('there are right amount of blogs returned', async () => {
     const result = await api.get('/api/blogs').expect(200)
-    expect(result.body.length).toBe(7)
+    expect(result.body.length).toBe(test_data.data.length)
   })
 
   test('instance of returned array includes right properties', async () => {
@@ -60,6 +60,39 @@ describe('POST request of blogs', () => {
       .post('/api/blogs')
       .send({ author: 'test', url: 'http://test.com/blog' })
       .expect(400)
+  })
+})
+
+describe('DELETE request of blogs', () => {
+  test('works without error 204 on success and 404 on not found', async () => {
+    const result = await api
+      .post('/api/blogs')
+      .send({ title: 'test', author: 'test', url: 'https://test.com/blog/vol_1' })
+
+    const id = result.body.id
+    await api.delete(`/api/blogs/${id}`).expect(204)
+    await api.delete(`/api/blogs/${id}`).expect(404)
+  })
+})
+
+describe('PUT request of blogs', () => {
+  test('update works without errors', async () => {
+    const result = await api
+      .post('/api/blogs')
+      .send({ title: 'test', author: 'test', url: 'https://test.com/blog/vol_1' })
+
+    const id = result.body.id
+    const updatedPost = await api
+      .put(`/api/blogs/${id}`)
+      .send({ likes: 30 })
+      .expect(200)
+
+    expect(updatedPost.body.likes).toBe(30)
+    await api.delete(`/api/blogs/${id}`).expect(204)
+    await api
+      .put(`/api/blogs/${id}`)
+      .send({ likes: 30 })
+      .expect(404)
   })
 })
 
