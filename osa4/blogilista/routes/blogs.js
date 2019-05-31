@@ -1,18 +1,18 @@
 const router = require('express').Router()
-const Blog = require('../models/blogModel')
+const { Blog, validate } = require('../models/blogModel')
 
-router.get('/', (request, response) => {
-  Blog.find({}).then(blogs => {
-    response.send(blogs)
-  })
+router.get('/', async (req, res) => {
+  const blogs = await Blog.find({})
+  res.send(blogs)
 })
 
-router.post('/', (request, response) => {
-  const blog = new Blog(request.body)
+router.post('/', async (req, res) => {
+  const { value, error } = validate(req.body)
+  if (error) return res.status(400).send(error.details[0].message)
 
-  blog.save().then(result => {
-    response.status(201).send(result)
-  })
+  const blog = new Blog(value)
+  const savedBlog = await blog.save()
+  res.status(201).send(savedBlog)
 })
 
 module.exports = router

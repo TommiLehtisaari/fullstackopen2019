@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const Joi = require('joi')
 
 const blogSchema = mongoose.Schema({
   title: String,
@@ -15,4 +16,17 @@ blogSchema.set('toJSON', {
   }
 })
 
-module.exports = mongoose.model('Blog', blogSchema)
+const Blog = mongoose.model('Blog', blogSchema)
+
+const validateBlog = blog => {
+  const schema = {
+    title: Joi.string().required(),
+    author: Joi.string().required(),
+    url: Joi.string().required(),
+    likes: Joi.number().default(0)
+  }
+  return Joi.validate(blog, schema)
+}
+
+exports.Blog = Blog
+exports.validate = validateBlog

@@ -2,7 +2,7 @@ const supertest = require('supertest')
 const mongoose = require('mongoose')
 const app = require('../app')
 const api = supertest(app)
-const Blog = require('../models/blogModel')
+const { Blog } = require('../models/blogModel')
 const test_data = require('./testdata_blogposts')
 
 describe('when there is initially some blogs saved', () => {
@@ -35,6 +35,31 @@ describe('when there is initially some blogs saved', () => {
     expect(blogpost).toHaveProperty('url')
     expect(blogpost).not.toHaveProperty('_id')
     expect(blogpost).not.toHaveProperty('__v')
+  })
+})
+
+describe('POST request of blogs', () => {
+  test('property of likes gets default value of (zero) if not defined', async () => {
+    const result = await api
+      .post('/api/blogs')
+      .send({ title: 'test', author: 'test', url: 'https://test.com/blog/vol_1' })
+      .expect(201)
+
+    expect(result.body.likes).toBe(0)
+  })
+
+  test('status of 400 if property "url" is missing', async () => {
+    await api
+      .post('/api/blogs')
+      .send({ title: 'test', author: 'test' })
+      .expect(400)
+  })
+
+  test('status of 400 if property "title" is missing', async () => {
+    await api
+      .post('/api/blogs')
+      .send({ author: 'test', url: 'http://test.com/blog' })
+      .expect(400)
   })
 })
 
