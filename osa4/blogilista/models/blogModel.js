@@ -1,8 +1,4 @@
 const mongoose = require('mongoose')
-const config = require('config')
-
-const mongoUrl = config.get('mongo_url')
-mongoose.connect(mongoUrl, { useNewUrlParser: true })
 
 const blogSchema = mongoose.Schema({
   title: String,

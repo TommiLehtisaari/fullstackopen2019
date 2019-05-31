@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "test": "atlas_uri=mongodb://localhost:27017/blog jest --verbose",
+    "watch": "NODE_ENV=development nodemon index.js",
+    "test": "atlas_uri=mongodb://localhost:27017/blog jest --verbose --runInBand",
     "localdev": "atlas_uri=mongodb://localhost:27017/blog NODE_ENV=development nodemon index.js"
   },
   "devDependencies": {
@@ -21,7 +22,8 @@
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mongoose": "^5.5.11",
-    "mongoose-unique-validator": "^2.0.3"
+    "mongoose-unique-validator": "^2.0.3",
+    "supertest": "^4.0.2"
   },
   "jest": {
     "testEnvironment": "node"

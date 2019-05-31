@@ -1,16 +1,11 @@
-const express = require('express')
-const cors = require('cors')
-const blogs = require('./routes/blogs')
-const app = express()
+const app = require('./app')
+const http = require('http')
+const logger = require('./utils/logger')
 
-app.use(cors())
-app.use(express.json())
-app.use('/api/blogs', blogs)
+const server = http.createServer(app)
 
 const PORT = process.env.PORT || 3003
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`)
-  console.log(`NODE_ENV=${process.env.NODE_ENV}`)
-  const config = require('config')
-  console.log(config)
+server.listen(PORT, () => {
+  logger.info(`Server running on port ${PORT}`)
+  logger.info(`NODE_ENV=${process.env.NODE_ENV}`)
 })
