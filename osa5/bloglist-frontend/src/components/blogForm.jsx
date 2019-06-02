@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import Joi from 'joi'
 
 const BlogForm = ({ handleSubmit }) => {
@@ -57,6 +58,10 @@ const BlogForm = ({ handleSubmit }) => {
       </form>
     </React.Fragment>
   )
+}
+
+BlogForm.propTypes = {
+  handleSubmit: PropTypes.func.isRequired
 }
 
 export default BlogForm

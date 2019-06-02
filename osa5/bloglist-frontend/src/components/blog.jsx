@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 import authService from '../services/authService'
 
 const Blog = ({ blog, handleLike, handleRemove }) => {
@@ -31,6 +32,12 @@ const Blog = ({ blog, handleLike, handleRemove }) => {
       )}
     </div>
   )
+}
+
+Blog.propTypes = {
+  handleLike: PropTypes.func.isRequired,
+  handleRemove: PropTypes.func.isRequired,
+  blog: PropTypes.object.isRequired
 }
 
 export default Blog
