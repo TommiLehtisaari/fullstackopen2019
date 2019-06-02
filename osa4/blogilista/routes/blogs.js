@@ -44,7 +44,11 @@ router.put('/:id', async (req, res) => {
     likes: req.body.likes || blog.likes
   }
 
-  const result = await Blog.findByIdAndUpdate(req.params.id, newBlog, { new: true })
+  const result = await Blog.findByIdAndUpdate(req.params.id, newBlog, { new: true }).populate(
+    'user',
+    { username: 1, name: 1, id: 1 }
+  )
+
   res.status(200).send(result)
 })
 

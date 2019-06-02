@@ -3,6 +3,14 @@ import React, { useState } from 'react'
 const Login = ({ handleSubmit }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  const [visible, setVisible] = useState(false)
+
+  const hideWhenVisible = { display: visible ? 'none' : '' }
+  const showWhenVisible = { display: visible ? '' : 'none' }
+
+  const toggleVisibility = () => {
+    setVisible(!visible)
+  }
 
   const doSubmit = event => {
     event.preventDefault()
@@ -12,7 +20,7 @@ const Login = ({ handleSubmit }) => {
   }
   return (
     <React.Fragment>
-      <form onSubmit={event => doSubmit(event)}>
+      <form style={showWhenVisible} onSubmit={event => doSubmit(event)}>
         <div>
           <input
             onChange={({ target }) => setUsername(target.value)}
@@ -33,6 +41,14 @@ const Login = ({ handleSubmit }) => {
         </div>
         <button type="submit">login</button>
       </form>
+      <div>
+        <div style={hideWhenVisible}>
+          <button onClick={toggleVisibility}>Login</button>
+        </div>
+        <div style={showWhenVisible}>
+          <button onClick={toggleVisibility}>cancel</button>
+        </div>
+      </div>
     </React.Fragment>
   )
 }
