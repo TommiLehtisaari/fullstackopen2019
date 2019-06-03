@@ -39,14 +39,14 @@ const Login = ({ handleSubmit }) => {
             name="password"
           />
         </div>
-        <button type="submit">login</button>
+        <button type="submit">kirjaudu</button>
       </form>
       <div>
         <div style={hideWhenVisible}>
-          <button onClick={toggleVisibility}>Login</button>
+          <button onClick={toggleVisibility}>kirjaudu</button>
         </div>
         <div style={showWhenVisible}>
-          <button onClick={toggleVisibility}>cancel</button>
+          <button onClick={toggleVisibility}>peruuta</button>
         </div>
       </div>
     </React.Fragment>

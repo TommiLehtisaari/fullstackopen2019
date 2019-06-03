@@ -28,7 +28,7 @@ router.delete('/:id', auth, async (req, res) => {
 
   if (req.user.id.toString() === blog.user.toString()) {
     await blog.remove()
-    return res.send(204).end()
+    return res.sendStatus(204)
   }
   res.send(403)
 })

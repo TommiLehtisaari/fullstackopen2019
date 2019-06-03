@@ -85,7 +85,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Blogs</h1>
+      <h1 className="testing">Blogs</h1>
       <Message message={message} />
       <div>
         {user.name} logged in<button onClick={() => handleLogout()}>logout</button>

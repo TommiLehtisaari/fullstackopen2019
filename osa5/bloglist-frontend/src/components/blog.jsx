@@ -19,7 +19,9 @@ const Blog = ({ blog, handleLike, handleRemove }) => {
 
   return (
     <div className="blog" onMouseLeave={() => toggle()}>
-      <div>{blog.title}</div>
+      <div>
+        {blog.title} by {blog.author}
+      </div>
       <div>{blog.url}</div>
       <div>
         {blog.likes} likes <button onClick={() => handleLike(blog)}>like</button>
