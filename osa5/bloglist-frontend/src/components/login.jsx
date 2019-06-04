@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
+import { useField } from '../hooks/field'
 
 const Login = ({ handleSubmit }) => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const username = useField('text')
+  const password = useField('password')
   const [visible, setVisible] = useState(false)
 
   const hideWhenVisible = { display: visible ? 'none' : '' }
@@ -14,30 +15,19 @@ const Login = ({ handleSubmit }) => {
 
   const doSubmit = event => {
     event.preventDefault()
-    handleSubmit({ username, password })
-    setUsername('')
-    setPassword('')
+    username.reset()
+    password.reset()
+    handleSubmit({ username: username.value, password: password.value })
   }
+
   return (
     <React.Fragment>
       <form style={showWhenVisible} onSubmit={event => doSubmit(event)}>
         <div>
-          <input
-            onChange={({ target }) => setUsername(target.value)}
-            placeholder="Username"
-            value={username}
-            type="text"
-            name="username"
-          />
+          <input {...username} placeholder="username" reset={null} />
         </div>
         <div>
-          <input
-            onChange={({ target }) => setPassword(target.value)}
-            value={password}
-            placeholder="password"
-            type="password"
-            name="password"
-          />
+          <input {...password} placeholder="password" reset={null} />
         </div>
         <button type="submit">kirjaudu</button>
       </form>
