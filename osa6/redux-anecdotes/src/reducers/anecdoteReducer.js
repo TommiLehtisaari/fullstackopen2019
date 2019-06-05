@@ -33,6 +33,14 @@ export const voteById = id => {
   }
 }
 
+export const voteByObject = object => {
+  const { id, content, votes } = object
+  return {
+    type: 'VOTE',
+    data: { id, content, votes }
+  }
+}
+
 const sortByVotes = anecdotes => {
   return anecdotes.sort((a, b) => {
     if (a.votes < b.votes) return 1
