@@ -1,0 +1,79 @@
+{
+  "anecdotes": [
+    {
+      "id": "47145",
+      "content": "If it hurts, do it more often",
+      "votes": 6
+    },
+    {
+      "content": "Adding manpower to a late software project makes it later!",
+      "id": "21149",
+      "votes": 0
+    },
+    {
+      "content": "The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
+      "id": "69581",
+      "votes": 0
+    },
+    {
+      "id": "36975",
+      "content": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
+      "votes": 2
+    },
+    {
+      "id": "25170",
+      "content": "Premature optimization is the root of all evil.",
+      "votes": 1
+    },
+    {
+      "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
+      "id": "98312",
+      "votes": 0
+    },
+    {
+      "content": "When project is half done, you don't have to plan good anymore.",
+      "votes": 0,
+      "id": "VjSjRpF"
+    },
+    {
+      "content": "You are a bad programmer? Congratulations! You can manage and judge the good programmers!",
+      "votes": 0,
+      "id": "FHzqsn8"
+    },
+    {
+      "id": "xZq04av",
+      "content": "Everything is easy unless you need to do it yourself",
+      "votes": 3
+    },
+    {
+      "content": "uusianecdootti",
+      "votes": 0,
+      "id": "b-IRMcR"
+    },
+    {
+      "content": "uusianecdootti",
+      "votes": 0,
+      "id": "L9dXwqE"
+    },
+    {
+      "content": "uusianecdootti",
+      "votes": 0,
+      "id": "gitciCE"
+    },
+    {
+      "content": "uusianecdootti",
+      "votes": 0,
+      "id": "DjcWD9u"
+    },
+    {
+      "content": "uusianecdootti",
+      "votes": 0,
+      "id": "Z_hdwLk"
+    },
+    {
+      "content": "uusianecdootti",
+      "votes": 0,
+      "id": "FRAtXmJ"
+    }
+  ]
+}

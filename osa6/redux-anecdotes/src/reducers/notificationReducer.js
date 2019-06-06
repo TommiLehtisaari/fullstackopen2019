@@ -6,6 +6,15 @@ export const hideNotification = () => {
   return { type: 'HIDE_NOTIFICATION' }
 }
 
+export const setNotificationTimeout = seconds => {
+  return async dispatch => {
+    dispatch(displayNotification())
+    setTimeout(() => {
+      dispatch(hideNotification())
+    }, seconds * 1000)
+  }
+}
+
 const initNotification = {
   content: '',
   style: { display: 'none', border: 'solid', padding: 10, borderWidth: 1 }
