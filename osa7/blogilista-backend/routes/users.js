@@ -4,7 +4,13 @@ const bcrypt = require('bcrypt')
 const { User, validate } = require('../models/userModel')
 
 router.get('/', async (req, res) => {
-  const users = await User.find({}).populate('blogs', { title: 1, author: 1, url: 1, id: 1 })
+  const users = await User.find({}).populate('blogs', {
+    title: 1,
+    author: 1,
+    url: 1,
+    id: 1,
+    likes: 1
+  })
   res.send(users)
 })
 
