@@ -1,4 +1,5 @@
 import http from './httpService'
+import Joi from 'joi'
 
 const baseUrl = '/api/blogs'
 
@@ -11,9 +12,8 @@ const create = blog => {
 }
 
 const addLike = blog => {
-  blog.likes += 1
-  const url = `${baseUrl}/${blog.id}`
-  return http.put(url, blog)
+  const url = `${baseUrl}/like/${blog.id}`
+  return http.put(url)
 }
 
 const remove = blog => {
@@ -21,4 +21,18 @@ const remove = blog => {
   return http.delete(url)
 }
 
-export default { getAll, create, addLike, remove }
+const addComment = (blog, comment) => {
+  const url = `/api/comments/${blog.id}`
+  return http.post(url, comment)
+}
+
+const validate = blog => {
+  const schema = {
+    title: Joi.string().required(),
+    author: Joi.string().required(),
+    url: Joi.string().required()
+  }
+  return Joi.validate(blog, schema)
+}
+
+export default { getAll, create, addLike, remove, validate, addComment }

@@ -1,16 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { List } from 'semantic-ui-react'
+import BlogItem from './blogItem'
 
 const BlogList = props => {
   return (
-    <div>
-      <h2>All blogs</h2>
+    <List celled size="big">
       {props.blogs.map(blog => (
-        <div key={blog.id}>
-          {blog.title} by {blog.author}
-        </div>
+        <BlogItem key={blog.id} blog={blog} />
       ))}
-    </div>
+    </List>
   )
 }
 

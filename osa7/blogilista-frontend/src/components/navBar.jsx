@@ -6,25 +6,44 @@ import { setActivePage } from '../reducers/activePageReducer'
 
 const NavBar = props => {
   const { name } = props.currentUser
-  const { pathname } = window.location
   return (
     <Menu secondary>
-      <Menu.Item as={NavLink} to={'/home'} name="home" active={pathname.includes('/home')} />
-      <Menu.Item as={NavLink} to={'/blogs'} name="blogs" active={pathname.includes('/blogs')} />
-      <Menu.Item as={NavLink} to={'/users'} name="users" active={props.activePage === 'users'} />
+      <Menu.Item
+        as={NavLink}
+        to={'/home'}
+        name="home"
+        active={props.activePage === 'home'}
+        onClick={() => props.setActivePage('home')}
+      />
+      <Menu.Item
+        as={NavLink}
+        to={'/blogs'}
+        name="blogs"
+        active={props.activePage === 'blogs'}
+        onClick={() => props.setActivePage('blogs')}
+      />
+      <Menu.Item
+        as={NavLink}
+        to={'/users'}
+        name="users"
+        active={props.activePage === 'users'}
+        onClick={() => props.setActivePage('users')}
+      />
       {!name && (
         <Menu.Menu position="right">
           <Menu.Item
             as={NavLink}
             to={'/login'}
             name="Log in"
-            active={pathname.includes('/login')}
+            active={props.activePage === 'login'}
+            onClick={() => props.setActivePage('login')}
           />
           <Menu.Item
             as={NavLink}
             to={'/register'}
             name="register"
-            active={pathname.includes('/register')}
+            active={props.activePage === 'register'}
+            onClick={() => props.setActivePage('register')}
           />
         </Menu.Menu>
       )}

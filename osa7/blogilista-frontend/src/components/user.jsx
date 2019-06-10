@@ -5,7 +5,6 @@ import { Card, Item } from 'semantic-ui-react'
 const User = props => {
   const user = props.users.find(user => user.id === props.id)
   if (!user) return <div>404 - user not found</div>
-  console.log(user)
   return (
     <div>
       <h2>User profile</h2>

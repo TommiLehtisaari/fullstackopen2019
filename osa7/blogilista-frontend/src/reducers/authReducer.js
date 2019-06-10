@@ -14,7 +14,9 @@ export const login = user => {
   return async dispatch => {
     const response = await authService.login(user)
     if (response.headers) {
-      dispatch(setCurrentUser(response.headers['x-auth-token']))
+      const token = response.headers['x-auth-token']
+      http.setJWT(token)
+      dispatch(setCurrentUser(token))
     } else {
       return new Error('Invalid username or password')
     }

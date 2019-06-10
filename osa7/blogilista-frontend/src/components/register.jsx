@@ -10,13 +10,14 @@ const Register = props => {
   const [name, setName] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleSubmit = event => {
+  const handleSubmit = async event => {
     event.preventDefault()
     const user = { username, name, password }
     const { error } = userService.validate(user)
     if (error) return props.setError(error.details[0].message, 5)
 
-    props.createUser(user)
+    await props.createUser(user)
+    props.history.push('/home')
   }
 
   return (
