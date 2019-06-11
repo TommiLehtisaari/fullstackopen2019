@@ -19,11 +19,16 @@ const Login = props => {
     <Form onSubmit={event => handleSubmit(event)}>
       <Form.Field>
         <label>Username</label>
-        <input placeholder="Username" onChange={e => setUsername(e.target.value)} />
+        <input id="username" placeholder="Username" onChange={e => setUsername(e.target.value)} />
       </Form.Field>
       <Form.Field>
         <label>Password</label>
-        <input type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} />
+        <input
+          id="password"
+          type="password"
+          placeholder="Password"
+          onChange={e => setPassword(e.target.value)}
+        />
       </Form.Field>
       <Button type="submit">Submit</Button>
     </Form>

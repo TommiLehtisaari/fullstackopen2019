@@ -28,7 +28,7 @@ const BlogForm = props => {
       <Form.Field>
         <label>Title</label>
         <input
-          name="title"
+          id="title"
           value={title}
           placeholder="Title"
           onChange={e => setTitle(e.target.value)}
@@ -37,7 +37,7 @@ const BlogForm = props => {
       <Form.Field>
         <label>Author</label>
         <input
-          name="author"
+          id="author"
           value={author}
           placeholder="Author"
           onChange={e => setAuthor(e.target.value)}
@@ -45,7 +45,7 @@ const BlogForm = props => {
       </Form.Field>
       <Form.Field>
         <label>URL</label>
-        <input name="url" value={url} placeholder="URL" onChange={e => setUrl(e.target.value)} />
+        <input id="url" value={url} placeholder="URL" onChange={e => setUrl(e.target.value)} />
       </Form.Field>
       <Button type="submit">Submit</Button>
     </Form>

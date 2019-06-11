@@ -16,9 +16,14 @@ const BlogCommentForm = props => {
     <Form onSubmit={event => handleSubmit(event)}>
       <Form.Field>
         <label>Add New Comment</label>
-        <input value={comment} name="comment" onChange={e => setComment(e.target.value)} />
+        <input
+          id="comment"
+          value={comment}
+          name="comment"
+          onChange={e => setComment(e.target.value)}
+        />
       </Form.Field>
-      <Button type="submit">submit</Button>
+      <Button type="submit">Submit</Button>
     </Form>
   )
 }

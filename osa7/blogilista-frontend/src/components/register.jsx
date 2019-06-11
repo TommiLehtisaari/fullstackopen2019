@@ -25,15 +25,20 @@ const Register = props => {
       <Form onSubmit={event => handleSubmit(event)}>
         <Form.Field>
           <label>Username</label>
-          <input placeholder="Username" onChange={e => setUsername(e.target.value)} />
+          <input id="username" placeholder="Username" onChange={e => setUsername(e.target.value)} />
         </Form.Field>
         <Form.Field>
           <label>Name</label>
-          <input placeholder="Firstname Lastname" onChange={e => setName(e.target.value)} />
+          <input
+            id="name"
+            placeholder="Firstname Lastname"
+            onChange={e => setName(e.target.value)}
+          />
         </Form.Field>
         <Form.Field>
           <label>Password</label>
           <input
+            id="password"
             type="password"
             placeholder="Password"
             onChange={e => setPassword(e.target.value)}
