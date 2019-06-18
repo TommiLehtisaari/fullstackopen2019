@@ -1,0 +1,4 @@
+{
+  "mongo_db": "atlas_uri_library",
+  "jwt_secret": "jwt_secret"
+}
